@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask
 import os
 
 app = Flask(__name__)
@@ -8,13 +8,10 @@ def home():
     return "AI Backend Running 🚀"
 
 @app.route("/run")
-def run_code():
-    try:
-        import google  # your file
-        return jsonify({"status": "google.py executed successfully"})
-    except Exception as e:
-        return jsonify({"error": str(e)})
+def run():
+    return {"status": "working"}
 
+# IMPORTANT PART
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Render uses 10000
+    port = int(os.environ.get("PORT", 10000))  # Render requires this
     app.run(host="0.0.0.0", port=port)
